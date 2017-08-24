@@ -12,7 +12,7 @@ var passessionsport = require('express-session');
 var expressValidator = require("express-validator");
 var api = require('./routes/api');
 var login = require('./routes/login');
-var message = require('./routes/message');
+var messages = require('./routes/messages');
 var users = require('./routes/users');
 var app = express();
 var pgSession = require('connect-pg-simple')(session);
@@ -58,8 +58,8 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', api);
 app.use('/', login);
-app.use('/', message);
-app.use('/', user);
+app.use('/', messages);
+app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

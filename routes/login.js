@@ -6,6 +6,7 @@ var LocalStratergy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 
 var login = require('../api/login/login');
+var getUsers = require('../api/users/getUsers');
 
 router.get('/api/login', login.getLogin);
 router.get('/api/logout', login.logout);
