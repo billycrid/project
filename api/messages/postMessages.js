@@ -3,7 +3,7 @@ var userInfo = require('../users/getUsers');
 
 function createMessage(req, res) {
     var username = req.params.username;
-    var message = req.body.message;
+    var message = escape(req.body.message);
 
     req.checkBody('message', 'Message is required').notEmpty();
 

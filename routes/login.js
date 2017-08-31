@@ -8,8 +8,8 @@ var bcrypt = require('bcryptjs');
 var login = require('../api/login/login');
 var getUsers = require('../api/users/getUsers');
 
-router.get('/api/login', login.getLogin);
-router.get('/api/logout', login.logout);
+router.get('/login', login.getLogin);
+router.get('/logout', login.logout);
 
 passport.use(new LocalStratergy(
     function(username, password, done) {
@@ -71,6 +71,6 @@ passport.deserializeUser(function(id, done) {
         })
 });
 
-router.post('/api/login', passport.authenticate('local'), login.login);
+router.post('/login', passport.authenticate('local'), login.login);
 
 module.exports = router;

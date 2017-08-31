@@ -16,22 +16,22 @@ function getMessages(req, res, next) {
                         uf.username
                     from messages m
                     inner join users uf on uf.id = m.fromuserid
-                    where m.fromuserid = '${loggedInUserId}' or m.touserid = '${loggedInUserId}'
+                    where m.touserid = '${loggedInUserId}'
                     UNION
                     SELect distinct
                         ut.username
                     from messages m
                     inner join users ut on ut.id = m.touserid
-                    where m.fromuserid = '${loggedInUserId}' or m.touserid = '${loggedInUserId}'`;
+                    where m.fromuserid = '${loggedInUserId}'`;
         db.any(query)
           .then(function (data) {
-            res.status(200)
-               .json({
-                    status: 'success',
-                    data: data,
-                    count: data[0].totalCount || data.length,
-                    message: 'You have messages.'
-                });
+                res.status(200)
+                    .json({
+                        status: 'success',
+                        data: data,
+                        count: data[0].totalCount || data.length,
+                        message: 'You have messages.'
+                    });
           })
           .catch(function (data) {
             res.status(200)
@@ -67,6 +67,9 @@ function getMessageFromUsername(req, res, next) {
         
         db.any(query)
           .then(function (data) {
+            data.forEach(d => {
+                d.message = unescape(d.message);
+            });
             res.status(200)
                .json({
                     status: 'success',

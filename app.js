@@ -13,6 +13,7 @@ var expressValidator = require("express-validator");
 var api = require('./routes/api');
 var login = require('./routes/login');
 var messages = require('./routes/messages');
+var sessions = require('./routes/sessions');
 var users = require('./routes/users');
 var app = express();
 var pgSession = require('connect-pg-simple')(session);
@@ -39,7 +40,6 @@ app.use(cookieParser());
 // Express validator
 app.use(expressValidator());
 
-
 app.use(session({
   store: new pgSession({
       conString : 'postgres://billy:bcrid91@localhost:5432/application'
@@ -47,7 +47,9 @@ app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true,
-  cookie: {maxAge: 90000000}
+  cookie: {
+    maxAge: 90000000
+  }
 }));
 
 // passport
@@ -56,28 +58,26 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', api);
-app.use('/', login);
-app.use('/', messages);
-app.use('/', users);
+// app.get('/', function (req, res) {
+//   console.log(__dirname+'/public/index.html');
+//   res.sendFile(__dirname+'/public/index.html');
+// });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// app.use('/', function(req, res, next) {
+//   // Just send the index.html for other files to support HTML5Mode
+//   res.sendFile('index.html', { root: __dirname+'/public/assets' });
+// });
+
+app.use('/app', function(req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendFile('index.html', { root: __dirname+'/public' });
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use('/api', api);
+app.use('/api', login);
+app.use('/api', messages);
+app.use('/api', users);
+app.use('/api', sessions);
 
 app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
@@ -85,6 +85,8 @@ app.use(function(req, res, next) {
   res.locals.error = req.flash('error');
   res.locals.user = req.userLoginData || null;
 });
+
+
 
 // --------------------------------
 // --------------------------------

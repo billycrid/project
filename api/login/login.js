@@ -1,7 +1,16 @@
+var useragent = require('express-useragent');
+var geoip = require('geoip-lite');
+
 function login(req, res, next) {
-    console.log(req.sessionID);
     if (req.user) {
-        res.cookie('userid', req.user.id, { maxAge: 2592000000 });
+        req.session.info = {
+            isMobile: useragent.parse(req.headers['user-agent']).isMobile,
+            browser: useragent.parse(req.headers['user-agent']).browser,
+            platform: useragent.parse(req.headers['user-agent']).platform,
+            os: useragent.parse(req.headers['user-agent']).os,
+            location: geoip.lookup(req.ip)
+        }
+        res.cookie('userid', req.user.id, { maxAge: 90000000 });
         res.status(200).json({ 
             status: 'success', 
             data: {
@@ -14,8 +23,14 @@ function login(req, res, next) {
 }
 
 function getLogin(req, res, next) {
-    console.log(req.sessionID);
     if (req.user) {
+        req.session.info = {
+            isMobile: useragent.parse(req.headers['user-agent']).isMobile,
+            browser: useragent.parse(req.headers['user-agent']).browser,
+            platform: useragent.parse(req.headers['user-agent']).platform,
+            os: useragent.parse(req.headers['user-agent']).os,
+            location: geoip.lookup(req.ip)
+        }
         res.status(200).json({
             status: 'success', 
             data: {
