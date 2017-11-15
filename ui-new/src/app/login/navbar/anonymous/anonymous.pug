@@ -1,0 +1,25 @@
+ul.nav.navbar-nav.navbar-right(
+    style="margin-right: 20px;"
+  )
+  li
+    a((click)="getLoginDetails()") test
+  li.dropdown
+    a.dropdown-toggle(href='#', data-toggle='dropdown')
+      b Login
+      span.caret
+    ul#login-dp.dropdown-menu
+      li
+        .row
+          .col-md-12
+            .card.card-container
+                form.form-signin
+                span#reauth-email.reauth-email
+                input#inputEmail.form-control(type='username' placeholder='Username', required='', autofocus='' "[(ngModel)]"='loginUsername' name='username')
+                input#inputPassword.form-control(type='password' placeholder='Password', required='' "[(ngModel)]"='loginPassword' name='password')
+                #remember.checkbox
+                    label
+                    input(type='checkbox', value='remember-me')
+                    |  Remember me
+                button.btn.btn-lg.btn-primary.btn-block.btn-signin((click)="postLogin()") Sign in
+                a.forgot-password(href='#')
+                | Forgot the password?

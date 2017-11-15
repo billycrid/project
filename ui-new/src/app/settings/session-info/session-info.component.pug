@@ -1,0 +1,25 @@
+span(
+    *ngIf="sessions?.length <= 0"
+)
+    .row
+        .col-md-12
+            p You have no other sessions.
+
+span(
+    *ngIf="sessions?.length > 0"
+)
+    span(
+        *ngFor="let session of sessions"
+    )   
+        .row
+            .col-md-12
+                p You have {{sessions.length}} other session{{sessions.length > 1 ? 's': ''}}.
+        .row
+            .col-md-6
+                span {{session.info.platform}} {{session.info.os}} {{session.info.browser}}
+                br
+                span {{session.info.location.city}}, {{session.info.location.country}}.
+            .col-md-3
+                button.btn.btn-danger(
+                    (click)="setDeleteSession(session.sid)"
+                ) Delete session

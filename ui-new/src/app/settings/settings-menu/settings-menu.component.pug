@@ -1,0 +1,6 @@
+ul.list-group
+    li.list-group-item(
+        *ngFor="let setting of settings"
+        routerLink="/app/user/settings/{{setting.label}}"
+        routerLinkActive="active"
+    ) {{setting.title}}

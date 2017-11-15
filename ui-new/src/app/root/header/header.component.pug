@@ -1,0 +1,23 @@
+nav.navbar.navbar-default.navbar-inverse(role='navigation')
+  .container-fluid
+    .navbar-header
+      a.navbar-brand(href='#') Login dropdown
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li(
+          routerLinkActive="active"
+          '[routerLinkActiveOptions]'="{exact: true}"
+        )
+          a(routerLink="/") Home
+        li(
+          routerLinkActive="active"
+        )
+          a(routerLink="/app/messages") Messages
+        li(
+          routerLinkActive="active"
+        )
+          a(routerLink="/app/users") Users
+      ul.nav.navbar-nav.navbar-right
+        login-component(
+            type = 'navbar'
+        )

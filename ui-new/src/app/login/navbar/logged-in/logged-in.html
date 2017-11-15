@@ -1,0 +1,22 @@
+
+<ul class="nav navbar-nav navbar-right main-nav navbar-nav nav" style="margin-right: 20px;">
+  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="fa fa-user"></span></a>
+    <div class="dropdown-menu" role="menu"></div>
+  </li>
+  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="fa fa-comments-o"></span></a>
+    <div class="dropdown-menu" role="menu"></div>
+  </li>
+  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="fa fa-bell-o"></span></a>
+    <div class="dropdown-menu" role="menu"></div>
+  </li>
+  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{loginService.userInfo.username}}<span class="caret"></span></a>
+    <ul class="dropdown-menu setting" role="menu">
+      <li class="divider"></li>
+      <li><a (click)="goSettings()" style="cursor: pointer;">Settings</a></li>
+      <li><a routerLink="/app/admin">Admin</a></li>
+      <li class="divider"></li>
+      <li><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
+      <li class="divider"></li>
+    </ul>
+  </li>
+</ul>

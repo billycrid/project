@@ -1,0 +1,17 @@
+<span *ngIf="sessions?.length &lt;= 0">
+  <div class="row">
+    <div class="col-md-12">
+      <p>You have no other sessions.</p>
+    </div>
+  </div></span><span *ngIf="sessions?.length &gt; 0"><span *ngFor="let session of sessions">  
+    <div class="row">
+      <div class="col-md-12">
+        <p>You have {{sessions.length}} other session{{sessions.length > 1 ? 's': ''}}.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><span>{{session.info.platform}} {{session.info.os}} {{session.info.browser}}</span><br/><span>{{session.info.location.city}}, {{session.info.location.country}}.</span></div>
+      <div class="col-md-3">
+        <button class="btn btn-danger" (click)="setDeleteSession(session.sid)">Delete session</button>
+      </div>
+    </div></span></span>

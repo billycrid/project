@@ -1,0 +1,26 @@
+span(
+    *ngIf="loginService.requestedLoginLoading"
+)
+    span(*ngIf="type === 'page'")
+        p Loading...
+
+    span(
+        *ngIf="type === 'navbar'"
+    )
+        span
+            include ./navbar/loading/loading.pug
+
+span(*ngIf="!loginService.requestedLoginLoading")
+    span(*ngIf="type === 'page' && !loginService.isLoggedIn")
+        include ./page/login.page.pug
+    span(
+        *ngIf="type === 'navbar'"
+    )
+        span(
+            *ngIf="loginService.isLoggedIn"
+        )
+            include ./navbar/logged-in/logged-in.pug
+        span(
+            *ngIf="!loginService.isLoggedIn"
+        )
+            include ./navbar/anonymous/anonymous.pug

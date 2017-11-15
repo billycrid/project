@@ -1,0 +1,19 @@
+.container-fluid
+    .container
+        .chat_container
+            .col-sm-3.chat_sidebar
+                span(
+                    *ngIf="contactsLoading"
+                )
+                    messages-contacts-component(
+                        [contactsLoading]="contactsLoading"
+                    )
+                span(
+                    *ngIf="!contactsLoading"
+                )
+                    messages-contacts-component(
+                        [messageContacts]="messageContacts"
+                    )
+            .col-sm-9.message_section
+                messages-contents-component
+        

@@ -1,0 +1,11 @@
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="col-md-2">
+      <settings-menu-component></settings-menu-component>
+    </div>
+    <div class="col-md-10"><span *ngIf="selectedSettings === 'info'">
+        <user-info-component></user-info-component></span><span *ngIf="selectedSettings === 'session'">
+        <session-info-component></session-info-component></span></div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+
+<ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+  <li><a (click)="getLoginDetails()">test</a></li>
+  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><b>Login</b><span class="caret"></span></a>
+    <ul class="dropdown-menu" id="login-dp">
+      <li>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-container">
+              <form class="form-signin"></form><span class="reauth-email" id="reauth-email"></span>
+              <input class="form-control" id="inputEmail" type="username" placeholder="Username" required="" autofocus="" [(ngModel)]="loginUsername" name="username"/>
+              <input class="form-control" id="inputPassword" type="password" placeholder="Password" required="" [(ngModel)]="loginPassword" name="password"/>
+              <div class="checkbox" id="remember">
+                <label></label>
+                <input type="checkbox" value="remember-me"/> Remember me
+              </div>
+              <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="postLogin()">Sign in</button><a class="forgot-password" href="#"></a>Forgot the password?
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>

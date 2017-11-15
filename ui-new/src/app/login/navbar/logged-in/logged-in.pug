@@ -1,0 +1,32 @@
+ul.nav.navbar-nav.navbar-right.main-nav.navbar-nav.nav(
+style="margin-right: 20px;"
+)
+    li.dropdown
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+            span.fa.fa-user
+        .dropdown-menu(role='menu')
+
+    li.dropdown
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+            span.fa.fa-comments-o
+        .dropdown-menu(role='menu')
+
+    li.dropdown
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+            span.fa.fa-bell-o
+        .dropdown-menu(role='menu')
+
+    li.dropdown
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | {{loginService.userInfo.username}}
+            span.caret
+        ul.dropdown-menu.setting(role='menu')
+            li.divider
+            li
+                a((click)="goSettings()" style="cursor: pointer;") Settings
+            li
+                a(routerLink='/app/admin') Admin
+            li.divider
+            li
+                a((click)="logout()" style="cursor: pointer;") Logout
+            li.divider

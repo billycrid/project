@@ -1,0 +1,14 @@
+.container-fluid
+    .container
+        .col-md-2
+            settings-menu-component
+        .col-md-10
+            span(
+                *ngIf="selectedSettings === 'info'"
+            )
+                user-info-component
+
+            span(
+                *ngIf="selectedSettings === 'session'"
+            )
+                session-info-component
